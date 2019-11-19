@@ -1,0 +1,41 @@
+#!/bin/sh
+
+KEY=1zJ9DDJ1pg79DhNKvcMUpN2p8zvvQY2S
+URL=https://api.dynu.com/v2/dns
+ID=8490924
+RECORD_ID=3517649
+
+function getRecordData {
+
+    curl -s -X GET $URL/$ID/record/$RECORD_ID \
+	    -H "accept: application/json" \
+	    -H "API-Key: $KEY"
+}
+
+function checkDNSPort {
+
+    getRecordData | python -m json.tool | grep "port" | awk '{print $2}'
+}
+
+function updateDNSPort {
+
+    getRecordData > test
+    sed -i -e "s/$(checkDNSPort)/$(bash ngrokgetip | cut -d ":" -f 2)/g" test
+    DATA="$(cat test)"
+
+    echo "$DATA" | python -m json.tool
+    curl -s -X POST $URL/$ID/record/$RECORD_ID \
+    	-H "accept: application/json" \
+    	-H "API-Key: $KEY" \
+    	-H "Content-Type: application/json" \
+    	-d "$DATA" | python -m json.tool
+}
+
+function help {
+
+    echo "Dynu function script:"
+    echo "  >dynu getRecordData (get Dynu record data)"
+    echo "  >dynu checkDNSPort (get dynu public port)"
+    echo "  >dynu updateDNSPort (update dynu port to ngrok one)"
+}
+$@
