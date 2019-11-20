@@ -4,10 +4,10 @@
 #Run dynu help, to see usage
 #Written by UPC enthusiast
 
-#DYNU_KEY=1zJ9DDJ1pg79DhNKvcMUpN2p8zvvQY2S
+#DYNU_KEY=
 DYNU_URL=https://api.dynu.com/v2/dns
-#DYNU_ID=8490924
-#DYNU_RECORD_ID=3517649
+DYNU_ID=8490924
+DYNU_RECORD_ID=3517649
 
 function getRecordData {
 
