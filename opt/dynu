@@ -43,4 +43,5 @@ function help {
     echo "  >dynu checkDNSPort (get dynu public port)"
     echo "  >dynu updateDNSPort (update dynu port to ngrok one)"
 }
-$@
+
+[[ -z "$@" ]] && help || $@
