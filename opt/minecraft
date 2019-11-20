@@ -90,11 +90,9 @@ echo "-----> Instalation completed <-----"
 
 echo "-----> Hope you enjoy server <-----"
 
-echo "-----> Populating IP to dynu"
+echo "-----> Populating IP to dynu ..."
 
 dynu updateDNSPort
-
-echo "-----> DNS Populated <-----"
 
 # Flush the logfile every second, and ensure that the logfile exists
 screen -X "logfile 1" && sleep 1

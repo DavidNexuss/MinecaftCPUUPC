@@ -1,9 +1,13 @@
 #!/bin/sh
 
-KEY=1zJ9DDJ1pg79DhNKvcMUpN2p8zvvQY2S
-URL=https://api.dynu.com/v2/dns
-ID=8490924
-RECORD_ID=3517649
+#Script to manage connection with dynu and update the dns record with the new ip taken by ngrok
+#Run dynu help, to see usage
+#Written by UPC enthusiast
+
+#DYNU_KEY=1zJ9DDJ1pg79DhNKvcMUpN2p8zvvQY2S
+DYNU_URL=https://api.dynu.com/v2/dns
+#DYNU_ID=8490924
+#DYNU_RECORD_ID=3517649
 
 function getRecordData {
 
@@ -29,6 +33,7 @@ function updateDNSPort {
     	-H "API-Key: $KEY" \
     	-H "Content-Type: application/json" \
     	-d "$DATA" | python -m json.tool
+    echo "-----> DNS Populated"
 }
 
 function help {

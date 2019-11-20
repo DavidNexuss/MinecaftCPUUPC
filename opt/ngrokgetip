@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Script to get NGROK IP
+
 TEXT=$(cat ngrok.log)
 TEXT=${TEXT#*[Addr:}
 TEXT=${TEXT%%]*}
